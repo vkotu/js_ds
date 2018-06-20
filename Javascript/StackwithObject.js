@@ -18,9 +18,20 @@ Stack.prototype.push = function (val) {
   this.storage[size] = val;
 };
 
+Stack.prototype.peek = function () {
+  console.log('size:' + this.size());
+  if (!this.size()) {
+    return 'empty stack';
+  }
+  return this.storage[this.size() - 1];
+};
+
 Stack.prototype.pop = function () {
-  var size = this.size(),
-    val = this.storage[size-1];
+  var size = this.size();
+  if (!size) {
+    return 'empty stack';
+  }
+  var val = this.storage[size-1];
   delete this.storage[size-1];
   return val;
 
@@ -39,7 +50,22 @@ console.log(s1.pop());
 s1.push('d');
 s1.push('e');
 
+console.log('peek:' + s1.peek());
+
 console.log(s1.storage);
 console.log(s1.pop());
+console.log(s1.pop());
+console.log(s1.storage);
+console.log(s1.pop());
+console.log(s1.storage);
+console.log(s1.pop());
+console.log('peek:' + s1.peek());
+console.log(s1.storage);
+console.log(s1.pop());
+s1.push('c');
+console.log(s1.storage);
+s1.push('d');
+s1.push('e');
+console.log(s1.storage);
 console.log(s1.pop());
 console.log(s1.storage);

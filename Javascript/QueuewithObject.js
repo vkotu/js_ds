@@ -26,6 +26,7 @@ Queue.prototype.dequeue = function () {
   if (this.head == this.tail) {
     this.head = 0;
     this.tail = 0;
+    console.log('empty queue: reset');
     return;
   } else {
     delete this.storage[this.head];

@@ -17,5 +17,20 @@ function recursiveMult (arr, num) {
   }
 }
 
+var recursiveMultiplier = function(arr, num) {
+  if(arr.length === 0){
+    return arr;
+  }
 
-console.log(recursiveMult([1], 8));
+  var last = arr.pop();
+
+  recursiveMultiplier(arr, num);
+
+  arr.push(last * num);
+
+  return arr;
+}
+
+
+
+console.log(recursiveMult([1,2,3,4], 8));

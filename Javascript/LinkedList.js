@@ -79,7 +79,7 @@ LinkedList.prototype.insertHead = function (val) {
   if (!this.head) {
     this.head = newNode;
     this.tail = this.head;
-  }else {
+  } else {
     newNode.next = this.head;
     this.head = newNode;
   }
@@ -99,6 +99,19 @@ LinkedList.prototype.appendToTail = function (val) {
   var newNode = new Node(val);
   this.tail.next = newNode;
   this.tail = newNode;
+  return this.tail;
+}
+
+LinkedList.prototype.removeHead = function () {
+  if (!this.head) {
+    console.log('Empty list, no head');
+    return;
+  }
+
+  var oldHead = this.head;
+  this.head = oldHead.next;
+  oldHead.next = null;
+  return oldHead;
   return this.tail;
 }
 
@@ -127,3 +140,7 @@ ll.print();
 
 ll.appendToTail(60);
 console.log(ll.tail);
+
+ll.removeHead();
+console.log(ll.head);
+ll.print();

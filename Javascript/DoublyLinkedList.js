@@ -184,6 +184,29 @@ var Dlist = {
         if (targetNode === this.head) {
             this.head = newNode;
         }
+    },
+
+    removeBefore: function (node) {
+        if(!this.head) {
+            console.log('List is not initialised');
+            return;
+        }
+        var targetNode = this.findByNode(node);
+        if(!targetNode ) {
+            return 'Node not found';
+        }
+        var removedNode = targetNode.prev;
+        if (!removedNode) {
+            return 'nothing to remove';
+        }
+        removedNode.prev && (removedNode.prev.next = targetNode);
+        targetNode.prev = removedNode.prev;
+        if (removedNode === this.head) {
+            this.head = targetNode;
+        }
+        removedNode.next = null;
+        removedNode.prev = null;
+        return removedNode.val;
     }
 
 }
@@ -208,4 +231,8 @@ dList.appendToTail(5);
 dList.appendToTail(6);
 dList.print();
 dList.insertBefore(dList.head.next.next, 3);
+dList.print();
+dList.removeBefore(dList.head.next);
+dList.print();
+dList.insertHead(2);
 dList.print();

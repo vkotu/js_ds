@@ -21,3 +21,23 @@ function foo() {
 var baz = foo.bind({x: 1, y : 2});
 baz();
 // foo();
+
+
+function bam () {
+  return () => this.bar;
+};
+
+
+global.bar = "bar1";
+var o1 = {bar: "bar2", foo: bam};
+var o2 = {bar: "bar3"};
+
+var f1 = bam();
+var f2 = o1.foo();
+var f3 = bam.call(o2);
+
+console.log(f1());
+console.log(f2());
+console.log(f3());
+console.log(f1.call(o2));
+console.log("*********");

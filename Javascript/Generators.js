@@ -1,4 +1,4 @@
-var run = *function (){
+var run = function* g(){
     var x = 1 + (yield null);
     var y = x + (yield null);
     yield (x+y);

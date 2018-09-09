@@ -8,7 +8,7 @@ Function.prototype.bind2 = function bind2(oThis) {
   var fToBind = this;
 
   return function () {
-    return fToBind.apply(oThis, aArgs);
+    return fToBind.apply(oThis, aArgs.concat([].slice.call(arguments)));
   }
 }
 
@@ -22,14 +22,11 @@ var obj2 = {
 }
 // global.x = 20;
 function foo(a,b) {
-  console.log(a);
-  console.log(b);
-  console.log(this.toString());
   console.log(this.x);
+  console.log(arguments);
 }
 
 
 var bar = foo.bind2(obj, 11,12,13);
 
-bar();
-bar.call(obj2);
+bar(14,15);

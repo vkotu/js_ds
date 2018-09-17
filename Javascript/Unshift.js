@@ -12,3 +12,12 @@ function unshift (arr, numtoAdd) {
 }
 
 console.log(unshift([1,2,3,4], 9));
+
+
+
+var foo = "Hello";
+(function() {
+  var bar = " World";
+  console.log(foo + bar);
+})();
+console.log(foo + bar);

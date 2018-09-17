@@ -18,12 +18,9 @@ function* main() {
 
 var it = main();
 
-it.next();
-it.next();
+// it.next();
+// it.next();
 
 for (var i of main()) {
     console.log(i);
 }
-
-
-

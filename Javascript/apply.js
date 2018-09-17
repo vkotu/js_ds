@@ -23,5 +23,13 @@ function foo(a, b) {
   console.log(a,b);
 }
 
+String.prototype.test = function () {
+  console.log(this);
+  console.log(typeof this);
+}
+var x = "sad";
+console.log(typeof x);
+x.test();
+
 
 console.log(foo.apply2(obj, [0, 30]));

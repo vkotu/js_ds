@@ -56,4 +56,5 @@ function isWinner(board) {
   }
   return false;
 }
+
 console.log(isWinner(board));

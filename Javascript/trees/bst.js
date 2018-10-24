@@ -15,9 +15,9 @@ var node6 = new node(18);
 
 root.left = node2;
 root.right = node3;
-// root.left.right = node4;
-// root.right.left = node5;
-// root.right.right = node6;
+root.left.right = node4;
+root.right.left = node5;
+root.right.right = node6;
 
 
 module.exports.rootNode = root;

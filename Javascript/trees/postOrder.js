@@ -39,4 +39,36 @@ function iterativePostOrder(root) {
   }
 }
 
+function iterativePostTry(root) {
+  if (root == null) {
+    return;
+  }
+  var cur = root;
+  var stack = [];
+
+  while (cur !== null || stack.length > 0) {
+    if (cur) {
+      stack.push(cur);
+      cur = cur.left;
+    }else {
+      if (stack.length === 0) { return;}
+      var temp = stack[stack.length -1].right;
+      if (temp) {
+        cur = temp;
+      } else {
+        temp = stack.pop();
+        console.log(temp.val);
+        while(stack.length && temp === stack[stack.length -1].right) {
+          temp = stack.pop();
+          console.log(temp.val);
+        }
+      }
+    }
+  }
+
+
+
+}
+
 iterativePostOrder(tree.rootNode);
+iterativePostTry(tree.rootNode);

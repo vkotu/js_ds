@@ -1,0 +1,27 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+	font-family: "Cabin", Arial, Geneva, sans-serif;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+
+
+input {
+  width: 20%;
+  height: 35px;
+}

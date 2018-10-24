@@ -7,7 +7,7 @@ var board = [
 var colCount = board[0].length;
 var rowCount = board.length;
 
-for (var k = 0; k < board.length; k++) {
+for (var k = 0; k < rowCount; k++) {
  var result = "";
   for (var row = k,col=0; row>=0 && col < colCount;) {
     result  = result + " " +  board[row][col];

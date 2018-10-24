@@ -1,8 +1,18 @@
-function debounce (func, wait) {
-  return function (...args) {
+function debounce (cb, wait) {
+  var timeout;
+  return function () {
     var context = this;
-    setTimeout(() => func.apply(context, args), wait)
+    var args = arguments;
+
+    function trigger () {
+      timeout = null;
+      cb.apply(context, args);
+    }
+    if (timeout) { timeout = null; }
+    timeout = setTimeout(trigger, wait || 500);
   }
+
+
 }
 
 //wont work because arrow function do not this. it behaves lexical and this will be global

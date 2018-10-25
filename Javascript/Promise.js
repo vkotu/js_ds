@@ -8,14 +8,14 @@ function getData(d) {
 
 getData(1).then(function (v) {
     console.log(v+1);
-    it.next();
+    it.next("kotu");
 });
 
 function* gen() {
     console.log("hello");
-    yield null;
-    console.log("world");
+    var name = yield "waiting for name";
+    console.log("Mr/Ms: " + name);
 }
 
 var it = gen();
-it.next();
+console.log(it.next().value);

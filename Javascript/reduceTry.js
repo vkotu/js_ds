@@ -1,3 +1,32 @@
+Array.prototype.reduce2 = Array.prototype.reduce2 || function (cb, initialVal){
+  const arr = this;
+  let i = 0;
+  let result = initialVal || arr[i++];
+  for(;i<arr.length;i++) {
+    result = cb(result, arr[i]);
+  }
+  return result;
+};
+
+// with initial
+var x = [1,2,3,4,5].reduce2(function (acc, val) {
+  return acc+val;
+}, 1);
+console.log(x);
+
+//with out initial
+var x = [1,2,3,4,5].reduce2(function (acc, val) {
+  return acc+val;
+});
+console.log(x);
+
+//with out initial
+x = [1,2,3,4,5].reduce2((acc, val) => {
+    acc[val] = val;
+    return acc;
+}, {0: 0});
+console.log(x);
+
 Array.prototype.reduce3 = function (cb, initialVal) {
   var arrayInput = this;
   var result, i;

@@ -1,56 +1,59 @@
-Array.prototype.reduce2 = function (cb, initialVal) {
-  // console.log(typeof this);
-  // console.log(this instanceof Array);
-  if (!Array.isArray(this)) {
-    throw new Error('not an array');
-  }
-  var result = initialVal || 0;
-
-  for(var i=0;i<this.length; i++) {
-    result = cb(result,this[i]);
+Array.prototype.reduce2 = Array.prototype.reduce2 || function (cb, initialVal){
+  const arr = this;
+  let i = 0;
+  let result = initialVal || arr[i++];
+  for(;i<arr.length;i++) {
+    result = cb(result, arr[i]);
   }
   return result;
-}
+};
 
+// with initial
 var x = [1,2,3,4,5].reduce2(function (acc, val) {
   return acc+val;
-}, 0);
+}, 1);
+console.log(x);
 
-// console.log(x);
+//with out initial
+var x = [1,2,3,4,5].reduce2(function (acc, val) {
+  return acc+val;
+});
+console.log(x);
 
-Array.prototype.reduce3 = function (cb, initialVal) {
-  var arrayInput = this;
-  var result, i;
-  if (initialVal !== undefined) {
-    result = initialVal;
-    i = 0;
-  } else {
-    result = arrayInput[0];
-    i =1;
-  }
-  var length = this.length;
-  var p = new Promise(function (resolve, reject) {
-    function rec (cb, i) {
-      var pr = cb(result, arrayInput[i]);
-      pr.then(function (val) {
-        result = val;
-        if (i < length-1) {
-          rec(cb, i+1);
+//with out initial
+x = [1,2,3,4,5].reduce2((acc, val) => {
+    acc[val] = val;
+    return acc;
+}, {0: 0});
+console.log(x);
+
+// resolve one after one
+Array.prototype.reduce3 = Array.prototype.reduce3 || function (cb, initialVal) {
+  const arr = this;
+  let i = 0;
+  let result = initialVal || arr[i++];
+  let p = new Promise(function (resolve, reject) {
+    let count = 0;
+    function rec(result, i) {
+      let pr = cb(result, arr[i]);
+      pr.then((value) => {
+        if(i === arr.length -1) {
+          resolve(value);
         }else {
-          resolve(result);
+          rec(value, i+1);
         }
       });
-    }
-    rec(cb,i);
+    };
+    rec(result, i);
   });
   return p;
-}
+};
 
 var p = [1,2,3,4,5,6].reduce3(function (acc, val) {
   return new Promise(function (res, rej) {
-    setTimeout(res(acc+val), 100);
+    setTimeout(res(acc+val), Math.random() * 1000);
   });
-}, 0);
+}, 2);
 
 p.then(function (val) {
   console.log(val);
@@ -59,7 +62,7 @@ p.then(function (val) {
 
 var p2 = ['1','2','3','4','5','6'].reduce3(function (acc, val) {
   return new Promise(function (res, rej) {
-    setTimeout(res(acc+val), 100);
+    setTimeout(res(acc+val), Math.random() * 1000);
   });
 });
 

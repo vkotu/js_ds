@@ -18,7 +18,7 @@ class Emitter {
     }
   };
 
-  emit(name, ...args){
+  emit(name, ...args) {
     return (this.events[name] || []).map(fn => fn(...args));
   };
 

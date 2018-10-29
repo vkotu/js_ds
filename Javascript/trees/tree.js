@@ -20,10 +20,10 @@ root.left = node2;
 root.right = node3;
 root.left.left = node4;
 root.left.right = node5;
-root.left.right.right = node9;
+// root.left.right.right = node9;
 root.right.left = node6;
 root.right.right = node7;
-root.right.right.right = node8;
+// root.right.right.right = node8;
 
 
 module.exports.rootNode = root;

@@ -1,7 +1,7 @@
 var tree  = require('./tree.js').rootNode;
 
 
-console.log(lowestCommonAncestor(tree, tree.left.left, tree.right.right));
+console.log(lowestCommonAncestor(tree, tree.right.left, tree.right.right));
 
 
 function lowestCommonAncestor(root, p, q) {
@@ -31,10 +31,11 @@ function findPath(root, path, target) {
     if(root.val === target.val) {
         return true;
     }
-
-    if((root.left && findPath(root.left, path, target)) || (root.right && findPath(root.right, path, target))) {
-        return true;
+    console.log(path);
+    var isFound = (findPath(root.left, path, target)) || ( findPath(root.right, path, target));
+    if(!isFound) {
+        path.pop();
     }
-    path.pop();
-    return false;
+    
+    return isFound;
 }

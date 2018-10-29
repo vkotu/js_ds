@@ -1,26 +1,23 @@
-const inputField = document.getElementById('searchField');
+var inp = document.getElementById('searchField');
 
-inputField.addEventListener('keyup', debounce(search, 500));
+inp.addEventListener('keyup', debounce(query, 400));
 
-function search(e) {
-  var val = e.target.value;
-  console.log('searching results for query' + val );
+function query(e) {
+  console.log('query for str ' + arguments[0].target.value);
 }
 
-function debounce(cb, wait) {
+function debounce (cb, wait) {
   var timeout;
 
-
-  return function () {
-    var args = arguments;
+  return function (e) {
     var context = this;
-
-    function trigger() {
-      timeout = null;
-      return cb.apply(context, args);
+    var args = arguments;
+    if (timeout) {
+      clearTimeout(timeout);
     }
-
-    if(timeout) { clearTimeout(timeout);}
-    timeout = setTimeout(trigger, wait || 500);
+    timeout = setTimeout(() => {
+      timeout = undefined;
+      cb.apply(context, args);
+    }, wait || 500);
   }
 }

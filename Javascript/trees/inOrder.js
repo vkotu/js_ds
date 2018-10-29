@@ -16,7 +16,7 @@ function iterativeInOrder (root) {
   if (root === null) {
     return;
   }
-
+  var res = [];
   while(true) {
     if (root) {
       stack.push(root);
@@ -24,10 +24,11 @@ function iterativeInOrder (root) {
     } else {
       if (!stack.length) { break; }
       var temp = stack.pop();
-      console.log(temp.val);
+      res.push(temp.val);
       root = temp.right;
     }
   }
+  console.log(res.join(","));
 }
 
 iterativeInOrder(tree.rootNode);

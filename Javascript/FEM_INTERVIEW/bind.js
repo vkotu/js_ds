@@ -14,7 +14,7 @@
 Function.prototype.bind2 = function (obj){
     const funcToBeCalled = this;
     return function(){
-        // console.log(...arguments);
+        console.log(...arguments);
         funcToBeCalled.call(obj, [...arguments]);
     }
 }

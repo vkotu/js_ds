@@ -41,9 +41,6 @@ body {
   display: block;
 }
 
-@media (max-width: 500px) {
-}
-
 .toggle-button {
   position: absolute;
   top: 0.75rem;

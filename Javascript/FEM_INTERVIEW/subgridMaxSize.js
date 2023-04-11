@@ -1,26 +1,24 @@
 function largestSubGrid(grid, maxSum) {
   const n = grid.length;
+  let maxSize;
 
-  function getSubgridSum(i, j, k) {
-    let subgridSum = 0;
-    console.log(i, j, k);
-    for (let x = i; x < i + k; x++) {
-      for (let y = j; y < j + k; y++) {
-        subgridSum += grid[x][y];
+  function getSubGridLength(i,j,k) {
+    let sum = 0;
+    for(let x=i; x<i+k; x++) {
+      for(let y=j; y<j+k; y++) {
+        sum += grid[x][y];
       }
     }
-    console.log(subgridSum);
-    return subgridSum;
+    return sum;
   }
 
-  let maxSize = 0;
-
-  for (let k = 1; k <= n; k++) {
-    for (let i = 0; i <= n - k; i++) {
-      for (let j = 0; j <= n - k; j++) {
-        const subgridSum = getSubgridSum(i, j, k);
-        if (subgridSum <= maxSum) {
-          maxSize = Math.max(maxSize, k);
+  for(let k=1; k<=grid.length;k++) {
+    for(i=0;i<=n-k;i++) {
+      for(j=0;j<=n-k;j++) {
+        let subGridSum = getSubGridLength(i,j,k);
+        console.log(subGridSum);
+        if(subGridSum <= maxSum){
+          maxSize=k;
         }
       }
     }
